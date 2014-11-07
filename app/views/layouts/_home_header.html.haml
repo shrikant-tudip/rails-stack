@@ -1,0 +1,15 @@
+%ul.nav.nav-pills.header-menu{:role => "tablist"}
+  %li{:role => "presentation"}
+    = menu_link :home, 'Home', root_path
+  %li{:role => "presentation"}
+    = menu_link :contact_us, 'Contact Us', contact_us_path
+  %li{:role => "presentation"}
+    = menu_link :about_us, 'About Us', about_us_path
+  %li{:role => "presentation"}
+    -if user_signed_in? && current_user.admin?
+      = menu_link :admin, "Administration", admin_dashboard_path
+  %li{:role => "presentation"}
+    -if user_signed_in?
+      = link_to "Logout", destroy_user_session_path, method: :delete 
+    -else
+      = link_to "Login", new_user_session_path    
